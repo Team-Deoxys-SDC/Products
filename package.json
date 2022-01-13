@@ -1,0 +1,28 @@
+{
+  "name": "sdc-team-deoxys-products",
+  "version": "1.0.0",
+  "description": "This project is meant to handle the product overview data that will be required by the overview component of the project catwalk FEC",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon backend/server/index.js"
+  },
+  "author": "Beth Johnson",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "live-server": "^1.2.1",
+    "mysql": "^2.18.1",
+    "package": "^1.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Team-Deoxys-SDC/Products.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Team-Deoxys-SDC/Products/issues"
+  },
+  "homepage": "https://github.com/Team-Deoxys-SDC/Products#readme"
+}
