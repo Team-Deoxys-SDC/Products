@@ -8,7 +8,7 @@ CREATE TABLE product (
   slogan TEXT,
   description TEXT,
   category TEXT,
-  default_price DECIMAL,
+  default_price TEXT,
   PRIMARY KEY (id)
 );
 
@@ -18,8 +18,8 @@ CREATE TABLE styles (
   id INTEGER AUTO_INCREMENT ,
   product_id INTEGER,
   name TEXT,
-  sale_price DECIMAL(5,2) DEFAULT 0.0 NOT NULL,
-  original_price DECIMAL(5,2),
+  sale_price TEXT,
+  original_price TEXT,
   default_style BOOLEAN,
   PRIMARY KEY (id)
 );
@@ -58,4 +58,6 @@ ALTER TABLE styles ADD FOREIGN KEY (product_id) REFERENCES product (id);
 ALTER TABLE photos ADD FOREIGN KEY (style_id) REFERENCES styles (id);
 ALTER TABLE skus ADD FOREIGN KEY (style_id) REFERENCES styles (id);
 ALTER TABLE features ADD FOREIGN KEY (product_id) REFERENCES product (id);
-
+ALTER TABLE styles ADD INDEX styles_product_id_index(product_id);
+ALTER TABLE features ADD INDEX feature_product_id_index(product_id);
+ALTER TABLE feature ADD INDEX feature_product_id_index(product_id);
