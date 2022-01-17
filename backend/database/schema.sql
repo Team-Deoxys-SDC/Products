@@ -60,4 +60,5 @@ ALTER TABLE skus ADD FOREIGN KEY (style_id) REFERENCES styles (id);
 ALTER TABLE features ADD FOREIGN KEY (product_id) REFERENCES product (id);
 ALTER TABLE styles ADD INDEX styles_product_id_index(product_id);
 ALTER TABLE features ADD INDEX feature_product_id_index(product_id);
-ALTER TABLE feature ADD INDEX feature_product_id_index(product_id);
+ALTER TABLE photos ADD INDEX photos_styleid_index(style_id);
+ALTER TABLE skus ADD INDEX skus_styleid_index(style_id);
