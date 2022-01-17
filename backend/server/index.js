@@ -28,7 +28,7 @@ app.get('/products/:product_id', (req, res) => {
       res.sendStatus(400);
       return;
     } else {
-      data[0].features = JSON.parse(data[0].features)
+      data[0].features = JSON.parse(data[0].features);
       res.send(data);
     }
 
@@ -36,25 +36,15 @@ app.get('/products/:product_id', (req, res) => {
 })
 
 app.get('/products/:product_id/styles', (req, res) => {
-  dbConn.query('SELECT * FROM product where id=?', [req.params.product_id], (err, data) => {
+  dbConn.query('SELECT id as product_id, (SELECT JSON_ARRAYAGG(JSON_OBJECT("name",name,"original_price",original_price,"sale_price",sale_price,"default?",default_style,"photos",(select JSON_ARRAYAGG(JSON_OBJECT("url",url,"thumbnail_url",thumbnail_url)) from photos where photos.style_id=styles.id),"skus",(SELECT JSON_OBJECTAGG(skus.id, (JSON_OBJECT("quantity",quantity,"size",size))) FROM skus where skus.style_id=styles.id))) FROM styles WHERE styles.product_id=?) AS result FROM product WHERE id=?', ['?',req.params.product_id, req.params.product_id], (err, data) => {
     if (err) {
       console.log(err);
       res.sendStatus(400);
       return;
     } else {
-      dbConn.query('SELECT * FROM styles where product_id=?', [req.params.product_id], (err, data2) => {
-        if (err) {
-          console.log(err);
-          res.sendStatus(400);
-          return;
-        } else {
-          data[0].result = data2;
-          res.send(data);
-        }
-
-      })
+      data[0].result = JSON.parse(data[0].result)
+      res.send(data);
     }
-
   })
 })
 
