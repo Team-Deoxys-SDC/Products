@@ -2,7 +2,7 @@ import http from 'k6/http';
 import { sleep } from 'k6';
 
 export const options = {
-  vus: 1000,
+  vus: 100,
   duration: '10s',
 };
 
@@ -15,6 +15,6 @@ export const options = {
 // };
 
 export default function () {
-  http.get('http://localhost:3000/products/2/styles');
+  http.get('http://54.146.207.117/products/1/styles');
   sleep(1);
 }
